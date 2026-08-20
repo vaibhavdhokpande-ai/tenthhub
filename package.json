@@ -1,5 +1,5 @@
 {
-  "name": "tenth-lms",
+  "name": "learnify",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,11 +19,8 @@
     "@next-auth/prisma-adapter": "^1.0.7",
     "next-auth": "^4.24.7",
     "bcryptjs": "^2.4.3",
-    "zustand": "^4.5.4",
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^2.4.0",
     "lucide-react": "^0.417.0",
-    "react-markdown": "^9.0.1"
+    "clsx": "^2.1.1"
   },
   "devDependencies": {
     "typescript": "^5.5.4",

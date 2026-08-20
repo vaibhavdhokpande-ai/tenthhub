@@ -1,30 +1,26 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./app/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-  ],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        // Notebook-inspired palette: margin-red, ruled-blue, paper, ink
-        paper: "#FBF9F4",
-        ink: "#1E2124",
-        "ruled-blue": "#2B4C7E",
-        "margin-red": "#B5443C",
-        "highlight-amber": "#E8A33D",
-        "success-green": "#3F7D5C",
-        border: "#DDD6C8",
+        cream: "#F7F4EF",
+        ink: "#171717",
+        lavender: "#B9A9F0",
+        "lavender-dark": "#9C86E8",
+        coral: "#F0603F",
+        "coral-dark": "#DA4E2F",
+        sunshine: "#F3C548",
+        "sunshine-dark": "#E0AE2C",
+        line: "#E7E2D8",
       },
       fontFamily: {
-        display: ["'Fraunces'", "serif"],
+        display: ["'Fredoka'", "sans-serif"],
         body: ["'Inter'", "sans-serif"],
-        mono: ["'JetBrains Mono'", "monospace"],
       },
-      backgroundImage: {
-        "ruled-lines":
-          "repeating-linear-gradient(transparent, transparent 27px, #DDD6C8 28px)",
+      borderRadius: {
+        xl2: "1.25rem",
       },
     },
   },

@@ -1,58 +1,50 @@
-# 10th Standard LMS — Phase 1 Scaffold
+# Learnify — Course Marketplace
 
-Board selector → subject syllabus → topic (notes + video + quiz), backed by
-Postgres/Prisma. One subject (SSC Mathematics Part 1) is fully seeded end-to-end
-as a working demo; all other subjects exist as empty shells ready for content.
+A working Next.js implementation of the Learnify design — lavender/coral/sunshine
+palette, Fredoka display type, rounded pill buttons and course cards, matching
+the reference mockups.
+
+## What's built
+- [x] Landing page: hero, stat cards, course tabs (New/Recommended/Most popular)
+      with pagination, CTA banner, subjects section — all live database data
+- [x] `/courses` — full course grid with category filter
+- [x] `/courses/[slug]` — course detail: instructor, reviews, working enrol button
+- [x] `/subjects` and `/subjects/[slug]` — browse by category
+- [x] Auth: email/password signup & login (NextAuth, bcrypt-hashed passwords)
+- [x] `/dashboard` — enrolled courses with progress bars
+- [x] 6 categories, 6 teachers, 12 seeded courses (matches the reference mockup content)
 
 ## Setup
 
 ```bash
 npm install
 
-# 1. Copy env template and fill in real values
 cp .env.example .env
-# DATABASE_URL: free Postgres from neon.tech or supabase.com (~1 min to get a connection string)
+# DATABASE_URL: free Postgres from neon.tech or supabase.com
 # NEXTAUTH_SECRET: run `openssl rand -base64 32` and paste the output
 
-# 2. Push schema + generate client
 npx prisma db push
 npm run prisma:generate
-
-# 3. Seed demo content
 npm run seed
 
-# 4. Run
 npm run dev
 ```
 
-Visit `http://localhost:3000` → **Sign up** (pick SSC or CBSE) → go to
-**SSC → Mathematics Part 1 (Algebra) → Linear Equations in Two Variables** →
-mark it complete and take the quiz → check **Dashboard** to see progress and
-score saved against your account.
+Visit `http://localhost:3000` → sign up → browse courses → enrol in one (free
+or paid, no real payment is processed) → check `/dashboard`.
 
-## What's built
+## Design tokens (already in tailwind.config.ts)
+| Token | Hex | Use |
+|---|---|---|
+| `cream` | #F7F4EF | page card background |
+| `ink` | #171717 | text, dark buttons |
+| `lavender` | #B9A9F0 | outer page background, badges |
+| `coral` | #F0603F | primary CTA |
+| `sunshine` | #F3C548 | accent badges, CTA banner |
 
-**Phase 1 — Content structure**
-- [x] Board selector (SSC / CBSE) landing page
-- [x] Subject grid per board, chapter-wise syllabus checklist
-- [x] Topic page: markdown notes, video embed slot, interactive quiz
-- [x] Prisma schema for the full content hierarchy
-- [x] Seed script pattern — copy the Maths Part 1 block to add real content per chapter
-
-**Phase 2 — Auth & progress tracking**
-- [x] Email/password auth (NextAuth, credentials provider, bcrypt-hashed passwords)
-- [x] Signup collects board (SSC/CBSE) preference
-- [x] "Mark as complete" per topic, persisted to `Progress`
-- [x] Quiz scores persisted to `QuizAttempt` when logged in (works anonymously too, just not saved)
-- [x] Dashboard: per-subject completion bar, 5 most recent quiz attempts
-
-## Not yet built (Phase 3+, per the architecture doc)
-- [ ] Google OAuth (schema already supports it via the `Account` model — just add the provider in `lib/auth.ts`)
-- [ ] Admin CMS for publishing content without editing seed.ts
-- [ ] Weak-topic flags / quiz score trends on the dashboard
-- [ ] Content for remaining subjects/chapters (this is the bulk of the real work)
-
-## Adding a new topic
-Open `prisma/seed.ts`, copy the `chapter1` / `topic1` / `quiz1` block, change the
-slugs, title, `notesMd`, and questions, then re-run `npm run seed` — it's
-idempotent (upsert-based), safe to re-run anytime.
+## Not yet built
+- [ ] Course progress tracking (lessons/video content) — `Enrollment.progress`
+      exists in the schema but nothing updates it yet
+- [ ] Payment integration for paid courses (currently just marks as enrolled)
+- [ ] Search/filter by level, price, duration
+- [ ] Real course content pages (video/notes per course)
