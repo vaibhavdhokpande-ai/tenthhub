@@ -16,10 +16,8 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
     setLoading(true);
-
     const res = await signIn("credentials", { email, password, redirect: false });
     setLoading(false);
-
     if (res?.error) {
       setError("Invalid email or password.");
       return;
@@ -29,7 +27,7 @@ export default function LoginPage() {
 
   return (
     <main className="max-w-sm mx-auto px-6 py-20">
-      <h1 className="font-display text-2xl font-semibold mb-6">Log in</h1>
+      <h1 className="font-display text-3xl font-semibold mb-6">Log in</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="email"
@@ -37,7 +35,7 @@ export default function LoginPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full border border-border rounded-sm px-3 py-2 text-sm bg-white"
+          className="w-full bg-white rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-coral"
         />
         <input
           type="password"
@@ -45,20 +43,20 @@ export default function LoginPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="w-full border border-border rounded-sm px-3 py-2 text-sm bg-white"
+          className="w-full bg-white rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-coral"
         />
-        {error && <p className="text-sm text-margin-red">{error}</p>}
+        {error && <p className="text-sm text-coral">{error}</p>}
         <button
           type="submit"
           disabled={loading}
-          className="w-full font-mono text-sm bg-ink text-paper px-4 py-2.5 rounded-sm disabled:opacity-50"
+          className="w-full bg-coral text-white rounded-full py-3 font-medium hover:bg-coral-dark transition-colors disabled:opacity-60"
         >
           {loading ? "Logging in…" : "Log in"}
         </button>
       </form>
       <p className="text-sm text-ink/60 mt-6">
         No account?{" "}
-        <Link href="/signup" className="text-ruled-blue hover:underline">
+        <Link href="/signup" className="text-coral font-medium hover:underline">
           Sign up
         </Link>
       </p>
