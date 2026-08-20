@@ -10,7 +10,6 @@ export default function SignupPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [board, setBoard] = useState("ssc");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -22,7 +21,7 @@ export default function SignupPage() {
     const res = await fetch("/api/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password, board }),
+      body: JSON.stringify({ name, email, password }),
     });
     const data = await res.json();
 
@@ -34,7 +33,6 @@ export default function SignupPage() {
 
     const signInRes = await signIn("credentials", { email, password, redirect: false });
     setLoading(false);
-
     if (signInRes?.error) {
       router.push("/login");
       return;
@@ -44,7 +42,7 @@ export default function SignupPage() {
 
   return (
     <main className="max-w-sm mx-auto px-6 py-20">
-      <h1 className="font-display text-2xl font-semibold mb-6">Create your account</h1>
+      <h1 className="font-display text-3xl font-semibold mb-6">Create your account</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
@@ -52,7 +50,7 @@ export default function SignupPage() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-          className="w-full border border-border rounded-sm px-3 py-2 text-sm bg-white"
+          className="w-full bg-white rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-coral"
         />
         <input
           type="email"
@@ -60,7 +58,7 @@ export default function SignupPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full border border-border rounded-sm px-3 py-2 text-sm bg-white"
+          className="w-full bg-white rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-coral"
         />
         <input
           type="password"
@@ -69,42 +67,20 @@ export default function SignupPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
           minLength={6}
-          className="w-full border border-border rounded-sm px-3 py-2 text-sm bg-white"
+          className="w-full bg-white rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-coral"
         />
-        <div className="flex gap-3">
-          {[
-            { v: "ssc", l: "SSC" },
-            { v: "cbse", l: "CBSE" },
-          ].map((b) => (
-            <label
-              key={b.v}
-              className={`flex-1 text-center text-sm font-mono border rounded-sm py-2 cursor-pointer
-                ${board === b.v ? "border-ruled-blue bg-ruled-blue/5" : "border-border"}`}
-            >
-              <input
-                type="radio"
-                name="board"
-                value={b.v}
-                checked={board === b.v}
-                onChange={() => setBoard(b.v)}
-                className="hidden"
-              />
-              {b.l}
-            </label>
-          ))}
-        </div>
-        {error && <p className="text-sm text-margin-red">{error}</p>}
+        {error && <p className="text-sm text-coral">{error}</p>}
         <button
           type="submit"
           disabled={loading}
-          className="w-full font-mono text-sm bg-ink text-paper px-4 py-2.5 rounded-sm disabled:opacity-50"
+          className="w-full bg-coral text-white rounded-full py-3 font-medium hover:bg-coral-dark transition-colors disabled:opacity-60"
         >
           {loading ? "Creating account…" : "Sign up"}
         </button>
       </form>
       <p className="text-sm text-ink/60 mt-6">
         Already have an account?{" "}
-        <Link href="/login" className="text-ruled-blue hover:underline">
+        <Link href="/login" className="text-coral font-medium hover:underline">
           Log in
         </Link>
       </p>
