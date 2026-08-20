@@ -7,9 +7,7 @@ import { prisma } from "@/lib/prisma";
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
-  pages: {
-    signIn: "/login",
-  },
+  pages: { signIn: "/login" },
   providers: [
     CredentialsProvider({
       name: "Email & Password",
@@ -19,32 +17,21 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
-
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
-        });
+        const user = await prisma.user.findUnique({ where: { email: credentials.email } });
         if (!user || !user.password) return null;
-
         const valid = await bcrypt.compare(credentials.password, user.password);
         if (!valid) return null;
-
-        return { id: user.id, name: user.name, email: user.email, board: user.board };
+        return { id: user.id, name: user.name, email: user.email };
       },
     }),
   ],
   callbacks: {
     async jwt({ token, user }) {
-      if (user) {
-        token.id = (user as any).id;
-        token.board = (user as any).board ?? null;
-      }
+      if (user) token.id = (user as any).id;
       return token;
     },
     async session({ session, token }) {
-      if (session.user) {
-        (session.user as any).id = token.id as string;
-        (session.user as any).board = token.board as string | null;
-      }
+      if (session.user) (session.user as any).id = token.id as string;
       return session;
     },
   },
