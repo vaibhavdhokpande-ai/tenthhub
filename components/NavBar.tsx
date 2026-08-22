@@ -2,38 +2,68 @@
 
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
+import { ChevronDown } from "lucide-react";
 
 export default function NavBar() {
   const { data: session, status } = useSession();
 
   return (
-    <nav className="border-b border-border">
-      <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-        <Link href="/" className="font-display font-semibold text-sm">
-          10th Prep
+    <header className="max-w-6xl mx-auto px-6 pt-6">
+      <nav className="flex items-center justify-between">
+        <Link href="/" className="font-display text-xl font-semibold">
+          <span className="text-coral">Learn</span>
+          <span className="text-ink">ify</span>
         </Link>
-        <div className="flex items-center gap-4 text-sm font-mono">
+
+        <div className="hidden md:flex items-center gap-7 text-sm font-medium text-ink/80">
+          <Link href="/subjects" className="flex items-center gap-1 hover:text-ink">
+            Subjects <ChevronDown size={14} />
+          </Link>
+          <Link href="/courses" className="flex items-center gap-1 hover:text-ink">
+            Courses <ChevronDown size={14} />
+          </Link>
+          <Link href="/subjects" className="hover:text-ink">
+            Degrees
+          </Link>
+          <Link href="/courses" className="hover:text-ink">
+            For business
+          </Link>
+        </div>
+
+        <div className="flex items-center gap-3 text-sm font-medium">
           {status === "loading" ? null : session?.user ? (
             <>
-              <Link href="/dashboard" className="text-ink/70 hover:text-ink">
+              <Link
+                href="/dashboard"
+                className="px-4 py-2 rounded-full bg-white hover:bg-white/70 transition-colors"
+              >
                 Dashboard
               </Link>
-              <button onClick={() => signOut({ callbackUrl: "/" })} className="text-ink/50 hover:text-ink">
+              <button
+                onClick={() => signOut({ callbackUrl: "/" })}
+                className="px-5 py-2 rounded-full bg-coral text-white hover:bg-coral-dark transition-colors"
+              >
                 Sign out
               </button>
             </>
           ) : (
             <>
-              <Link href="/login" className="text-ink/70 hover:text-ink">
-                Log in
-              </Link>
-              <Link href="/signup" className="bg-ink text-paper px-3 py-1.5 rounded-sm">
+              <Link
+                href="/signup"
+                className="px-4 py-2 rounded-full bg-white hover:bg-white/70 transition-colors"
+              >
                 Sign up
+              </Link>
+              <Link
+                href="/login"
+                className="px-5 py-2 rounded-full bg-coral text-white hover:bg-coral-dark transition-colors"
+              >
+                Login
               </Link>
             </>
           )}
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }
