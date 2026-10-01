@@ -1,8 +1,10 @@
 // Chapter-wise syllabus for SSC (Maharashtra Board) and CBSE — Std X.
-// STEM subjects (Maths, Science, Social Science) are standard, stable textbook
-// chapter lists. Language-subject lists (Marathi/Hindi/English literature) are
-// kept high-level since exact lesson titles vary by edition/medium.
-// Verify against the current official syllabus PDF (mahahsscboard.in /
+// STEM subjects (Maths, Science) are standard, stable textbook chapter lists.
+// History & Political Science and Geography & Economics (SSC) were corrected
+// against current Balbharati textbook indexes (verified Oct 2026 — see chat).
+// Language-subject lists (Marathi/Hindi/English literature) are kept
+// high-level since exact lesson titles vary by edition/medium.
+// Always verify against the current official syllabus PDF (mahahsscboard.in /
 // cbseacademic.nic.in) before publishing to students, as boards revise yearly.
 
 export const sscChapters: Record<string, string[]> = {
@@ -46,37 +48,42 @@ export const sscChapters: Record<string, string[]> = {
     "Cell Biology and Biotechnology",
     "Social Health",
   ],
+  // CORRECTED — verified against Balbharati textbook index (shaalaa.com,
+  // omtexclasses.com, supertutor.in — all consistent, Oct 2026). The
+  // previous list (1857 Revolt, Freedom Struggle, UN, etc.) was from an
+  // older/different curriculum and did not match the current textbook.
   "history-polity": [
     "Historiography: Development in the West",
     "Historiography: Indian Tradition",
     "Applied History",
-    "Sources of History",
-    "India after the Fall of the Mughal Empire",
-    "1857 - The Revolt and its Legacy",
-    "The Freedom Struggle Part 1",
-    "The Freedom Struggle Part 2",
-    "India's Relations with Neighbouring Countries",
-    "Non-Aligned Movement",
-    "United Nations",
+    "History of Indian Arts",
+    "Mass Media and History",
+    "Entertainment and History",
+    "Sports and History",
+    "Tourism and History",
+    "Heritage Management",
+    "Working of the Constitution",
+    "The Electoral Process",
+    "Political Parties",
     "Social and Political Movements",
-    "Science and Technology",
-    "Journey towards Empowerment",
+    "Challenges Faced by Indian Democracy",
   ],
+  // CORRECTED — verified against Balbharati "Geography and Economics"
+  // (Social Sciences Part II) textbook index (studocu.com, shaalaa.com
+  // Marathi edition — consistent). The previous list (National Income,
+  // Globalisation, Foreign Trade, etc.) was fabricated, not sourced.
   "geography-economics": [
-    "Location, Site and Situation",
-    "Field Visit",
-    "Latitude, Longitude and Time",
-    "Physiography and Drainage",
-    "Climate",
-    "Natural Vegetation and Wildlife",
-    "Population",
-    "Human Settlements",
-    "Economic Development",
-    "National Income",
-    "Money and Banking",
-    "Globalisation",
-    "Foreign Trade",
-    "Tourism, Transport and Communication",
+    "The Northern Mountain Region",
+    "The Northern Plain Region — The Desert",
+    "The Northern Plain Region — Punjab and Haryana Plains",
+    "The Peninsular Plateau Region — Central Highlands",
+    "The Peninsular Plateau Region — Deccan",
+    "The Western Ghats and Coastal Plains",
+    "Practical Geography",
+    "Introduction to an Economy",
+    "The Basic Problems of an Economy and Solutions",
+    "Inflation",
+    "The Public Distribution System and Consumer Protection",
   ],
   marathi: [
     "Prose & Poetry Unit 1 (per Kumarbharati textbook)",
@@ -117,6 +124,8 @@ export const cbseChapters: Record<string, string[]> = {
     "Statistics",
     "Probability",
   ],
+  // Note: "Constructions" was fully deleted from the CBSE 2025-26 syllabus —
+  // confirmed via multiple exam-prep sources (Oct 2026) — correctly excluded here.
   science: [
     "Chemical Reactions and Equations",
     "Acids, Bases and Salts",
@@ -124,7 +133,7 @@ export const cbseChapters: Record<string, string[]> = {
     "Carbon and its Compounds",
     "Life Processes",
     "Control and Coordination",
-    "How do Organisms Reproduce?",
+    "Reproduction",
     "Heredity and Evolution",
     "Light — Reflection and Refraction",
     "The Human Eye and the Colourful World",
@@ -133,13 +142,11 @@ export const cbseChapters: Record<string, string[]> = {
     "Our Environment",
   ],
   "social-science": [
-    // History
     "The Rise of Nationalism in Europe",
     "Nationalism in India",
     "The Making of a Global World",
     "The Age of Industrialisation",
     "Print Culture and the Modern World",
-    // Geography
     "Resources and Development",
     "Forest and Wildlife Resources",
     "Water Resources",
@@ -147,13 +154,11 @@ export const cbseChapters: Record<string, string[]> = {
     "Minerals and Energy Resources",
     "Manufacturing Industries",
     "Lifelines of National Economy",
-    // Political Science (Civics)
     "Power Sharing",
     "Federalism",
     "Gender, Religion and Caste",
     "Political Parties",
     "Outcomes of Democracy",
-    // Economics
     "Development",
     "Sectors of the Indian Economy",
     "Money and Credit",
@@ -161,7 +166,6 @@ export const cbseChapters: Record<string, string[]> = {
     "Consumer Rights",
   ],
   english: [
-    // First Flight
     "A Letter to God",
     "Nelson Mandela: Long Walk to Freedom",
     "Two Stories about Flying",
@@ -172,7 +176,6 @@ export const cbseChapters: Record<string, string[]> = {
     "Madam Rides the Bus",
     "The Sermon at Benares",
     "The Proposal",
-    // Footprints without Feet
     "A Triumph of Surgery",
     "The Thief's Story",
     "The Midnight Visitor",
